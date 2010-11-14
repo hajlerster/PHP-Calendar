@@ -67,17 +67,13 @@ class Calendar {
 		$this->settings['month'] = date('m');
 		$this->settings['day'] = date('j');
 		
-		$this->settings['show_year'] = false;
-		$this->settings['show_month'] = true;
-		$this->settings['show_week'] = false;
-		
 		$this->settings['current_day_class'] = 'current';
 		$this->settings['weekend_class'] = 'weekendday';
 		$this->settings['calendar_class'] = 'calendar';
 		$this->settings['weekdays_class'] = 'weekdays';
 		$this->settings['year_class'] = 'year';
 		$this->settings['month_class'] = 'month';
-		$this->settings['days'] = 'days';
+		$this->settings['days_class'] = 'days';
 		
 		// set the user settings and strings
 		$this->settings = array_merge($this->settings, $settings);
@@ -208,7 +204,7 @@ class Calendar {
 		$output .= "\t</tr>\n";
 		
 		// printing days itself
-		$output .= "\t<tr class='".$this->settings['days']."'>\n";
+		$output .= "\t<tr class='".$this->settings['days_class']."'>\n";
 		$dayToPrint = 0;
 		for ($day = 1; $day <= $amountOfDays + ($firstWeekDay-1); $day++) {
 			
@@ -221,7 +217,7 @@ class Calendar {
 			
 			// if we are under the "Monday", create another row for this week
 			if ($day%7 == 1 && $day != 1) {
-				$output .= "\t<tr class='".$this->settings['days']."'>\n";
+				$output .= "\t<tr class='".$this->settings['days_class']."'>\n";
 			}
 			
 			// if dayToPrint isnt zero, so it will be good if we print start to print days :D
@@ -282,10 +278,8 @@ class Calendar {
 		return $output;
 		
 	}
-	
-	
+
 	
 }
-
 
 ?>

@@ -1,0 +1,80 @@
+To create the calendar object just include the class and create its instance
+	require_once('calendar.class.php');
+	$calendar = new Calendar();
+		
+Basic Settings
+	
+	$settings['year'] - Current year. Default value is - php date('Y')
+	
+	$settings['month'] - Current month. Default value is - php date('m')
+	
+	$settings['day'] Current day. Default value is - php date('j')
+	
+	$settings['current_day_class'] - CSS class to be set to current day. Default value is 'current'
+	
+	$settings['weekend_class']  - CSS class to be set to weekend days. Default value is 'weekendday'
+	
+	$settings['calendar_class'] - CSS class to be set to calendar wrapper (which is <table> tag). Default value is 'calendar'
+	
+	$settings['weekdays_class'] - CSS class to be set weekdays row (which is <tr> tag). Default value is 'weekdays'
+	
+	$settings['year_class'] - CSS class to be set to year indicating row (which is <th> tag). Default value is 'year'
+	
+	$settings['month_class'] - CSS class to be set to month indicating row (which is <th> tag). Default value is 'month'
+	
+	$settings['days_class'] - CSS class to be set to days indicating row (which is <tr> tag). Default value is 'days'
+	
+	$settings['year_url_pattern'] - URL pattern for next and prev year links. If this value is set, then the next and prev links will be appear. The URL pattern must contain {year} and {month} substrings. For example: www.yoursite.com/?y={year}&m={month}
+	
+	$settings['month_url_pattern'] - URL pattern for next and prev month links. If this value is set, then the next and prev links will be appear. The URL pattern must contain {year} and {month} substrings. For example: www.yoursite.com/?y={year}&m={month}
+	
+	You can set the values to the settings you want to modify and then set your settings array to the class. For example:
+		$settings['year'] = '1988';
+		$settings['month'] = '05';
+		$settings['day'] = '23';
+		
+		$settings['current_day_class'] = 'my_current_day_class';
+		
+		$calendar->setSettings($settings);
+	
+
+Setting up the strings
+
+	To change the month names, you should create the array like this:
+		$strings['month'][number-of-month]['full' || 'short'] = 'name-of-the-month';
+	and then set this to the class
+		$calendar->setStrings($strings);
+		
+	For weekday names:
+		$strings['week']['number-of-week-day']['full' || 'short'] = 'week-name';
+		
+	Also, you can modify the strings:
+		$strings['next_year_link']		(default value is &rarr;)
+		$strings['prev_year_link']		(default value is &larr;)
+		$strings['next_month_link']		(default value is &rarr;)
+		$strings['prev_month_link']		(default value is &larr;)
+		
+
+		
+Links
+	
+	If you want to link certain days to some pages you should just create an array like this:
+		$links['Y-m-d'] = 'your-link';
+		$links['2010-12-11'] = 'your-another-link';
+	and then just set your links array as previous $settings and $strings array
+		$calendar->setLinks($links);
+		
+
+Also it is possible to pass these variables when you create the class directly to the constructor.
+	$calendar = new Calendar($settings, $strings, $links);
+	
+
+Finally, when should just call the render() method and the object returns the rendered html that you have to print where you want.
+	$calendarHTML = $calendar->render();
+	print $calendarHTML;
+	
+		
+	
+	
+	
+	
